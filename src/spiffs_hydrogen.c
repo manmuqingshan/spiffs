@@ -1152,10 +1152,13 @@ s32_t SPIFFS_check(spiffs *fs) {
   SPIFFS_LOCK(fs);
 
   res = spiffs_lookup_consistency_check(fs, 0);
+  SPIFFS_API_CHECK_RES_UNLOCK(fs, res);
 
   res = spiffs_object_index_consistency_check(fs);
+  SPIFFS_API_CHECK_RES_UNLOCK(fs, res);
 
   res = spiffs_page_consistency_check(fs);
+  SPIFFS_API_CHECK_RES_UNLOCK(fs, res);
 
   res = spiffs_obj_lu_scan(fs);
 
